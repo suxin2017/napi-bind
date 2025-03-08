@@ -1,0 +1,35 @@
+{
+  "name": "napi-bind",
+  "version": "0.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 12.22.0 < 13 || >= 14.17.0 < 15 || >= 15.12.0 < 16 || >= 16.0.0"
+  },
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "browser": "browser.js",
+  "napi": {
+    "binaryName": "napi-bind",
+    "targets": [
+      "wasm32-wasip1-threads"
+    ]
+  },
+  "scripts": {
+    "test": "NAPI_RS_FORCE_WASI=1 node test.js",
+    "build": "napi build --release --platform --strip --target wasm32-wasip1-threads",
+    "build:debug": "napi build",
+    "prepublishOnly": "napi prepublish -t npm",
+    "artifacts": "napi artifacts",
+    "version": "napi version"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^3.0.0-alpha.72",
+    "ava": "^6.2.0",
+    "@napi-rs/wasm-runtime": "^0.2.7",
+    "emnapi": "^1.2.0"
+  },
+  "ava": {
+    "timeout": "1m"
+  }
+}
