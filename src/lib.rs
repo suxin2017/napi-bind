@@ -175,7 +175,7 @@ impl BindingWatcher {
 
         spawn(f);
 
-        tokio_with_wasm::alias::spawn(async move {
+        napi::tokio::task::spawn(async move {
             println!("why here is not running1");
         })
         .await;
@@ -187,7 +187,6 @@ impl BindingWatcher {
     pub async fn loop_spawn(&self, listener: MaybeAsyncJsCallback<(), ()>) -> napi::Result<()> {
         let f = async move {
             println!("why here is not running");
-
             println!("async call");
             if let Err(e) = listener.await_call(()).await {
                 println!("async watcher listener error: {:?}", e);
@@ -198,7 +197,7 @@ impl BindingWatcher {
 
         spawn(f);
 
-        tokio_with_wasm::alias::spawn(async move {
+        napi::tokio::task::spawn(async move {
             println!("why here is not running1");
             loop {}
         })

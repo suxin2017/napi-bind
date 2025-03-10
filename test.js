@@ -10,13 +10,13 @@ process.nextTick(() => {
     console.log("bind envent=======")
 
     // only show "async call" ,don't show "async no lock"
-
-    // w.loopSpawn(
-    //     (data) => {
-    //         console.log(data)
-    //     }
-    // )
-    // console.log("end envent=======")
+    console.log(w.start)
+    w.loopSpawn(
+        (data) => {
+            console.log(data)
+        }
+    )
+    console.log("end envent=======")
 
     // same
 
